@@ -41,6 +41,9 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+        if ($user->division_id == null) {
+            return redirect()->route('admin.index');
+        }
         if (!$user->has_filled_form) {
             return redirect()->route('eo.create');
         } else {

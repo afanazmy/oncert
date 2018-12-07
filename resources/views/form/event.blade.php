@@ -37,7 +37,7 @@
     							<label class="fs-field-label fs-anim-upper" data-info="Jika Anda mengikuti kepanitiaan event ini, pilih salah satu sie yang Anda ikuti.">Di {{ $event->name }}, saya </label>
                                 <input type="hidden" name="event_id[]" value="{{ $event->id }}">
                                 <section>
-                                    <select class="cs-select cs-skin-underline fs-anim-lower" name="position_id[]">
+                                    <select class="cs-select cs-skin-underline fs-anim-lower" name="position_id[]" required>
                     					<option value="" disabled selected>Pilih jabatan</option>
                                         <option value="tm">Tidak Mengikuti Event Ini</option>
                     					@foreach ($positions as $key => $position)

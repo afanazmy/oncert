@@ -70,7 +70,8 @@ class RegisterController extends Controller
             'division_id'   => $data['division_id'],
             'password'      => Hash::make($data['password']),
             'has_certificate'=> 0,
-            'has_filled_form'=> 0
+            'has_filled_form'=> 0,
+            'is_active'     => 1,
         ]);
     }
 }

@@ -33,6 +33,18 @@ Route::get('/preview-certificate', 'UserController@preview')->name('user.preview
 Route::post('/profile/update', 'UserController@update')->name('user.update');
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
+Route::get('/admin/certif', 'AdminController@allCertif')->name('admin.certif');
+Route::get('/admin/user/create', 'AdminController@create')->name('admin.user.create');
+Route::post('/admin/user/store', 'AdminController@store')->name('admin.user.store');
+Route::get('/admin/setting', 'AdminController@setting')->name('admin.setting');
+Route::post('/admin/setting/store', 'AdminController@storeSetting')->name('admin.setting.store');
+Route::get('/admin/nonaktif/{id}', 'AdminController@nonactivate')->name('admin.nonactivate');
+Route::get('/admin/detail/{id}', 'AdminController@detail')->name('admin.detail');
+Route::post('/admin/detail/update', 'AdminController@update')->name('admin.detail.store');
+Route::post('/admin/detail/verified', 'AdminController@verified')->name('admin.detail.verified');
+Route::get('/admin/detail/lock/{id}', 'AdminController@lock')->name('admin.detail.lock');
+Route::get('/admin/has-certif/{id}', 'AdminController@hasCertif')->name('admin.hasCertif');
+Route::get('/admin/certif/user/{id}', 'AdminController@userCertif')->name('admin.certif.user');
 
 // Route::group(['middleware' => 'web', 'prefix' => 'item'], function()
 // {

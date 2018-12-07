@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'active']);
     }
     public function index()
     {
@@ -37,6 +37,7 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->division_id = $request->division_id;
+        // $user->is_kadiv = $request->is_kadiv;
         $user->save();
 
         if ($user) {
@@ -50,10 +51,10 @@ class UserController extends Controller
 
     public function preview()
     {
-        $name = Auth::user()->name;
-        $user = User::where('id', Auth::user()->id)->with('divison')->first();
-        $division = $user->divison;
-        dd($user);
-        return view('user.preview', compact('name', 'division'));
+        $user = User::where('id', Auth::user()->id)->with('division')->first();
+        $division = $user->division;
+        // dd($division);
+        return view('user.preview', compact('user', 'division'));
     }
+
 }

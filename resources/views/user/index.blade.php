@@ -88,12 +88,43 @@
                                 </div>
                             </div>
 
+                            {{-- <div class="form-example-int form-horizental">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm horizontal-label" style="margin-top: 0.6em">Saya seorang Kadiv</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="fm-checkbox">
+                                                <label><input type="radio" value="1" name="is_kadiv" class="i-checks" @if (Auth::user()->is_kadiv) checked @endif> <i></i>Ya</label>
+                                                <label style="margin-left: 2em"><input type="radio" value="0" name="is_kadiv" class="i-checks" @if (!Auth::user()->is_kadiv) checked @endif> <i></i>Bukan</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
                             <div class="form-example-int mg-t-15">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
-                                        <button type="submit" class="btn btn-success notika-btn-success">Submit</button>
+                                        <button type="submit" @if(Auth::user()->is_locked) onclick="isLocked()" @endif class="btn btn-success notika-btn-success">Submit</button>
+                                        @if (Auth::user()->is_locked)
+                                            <script type="text/javascript">
+                                                function isLocked() {
+                                                    swal({
+                                                        "timer":5000,
+                                                        "title":"Error",
+                                                        "text":"Data sudah dikunci, silahkan hubungi Sekretaris Umum/Sekretaris Jenderal",
+                                                        "showConfirmButton":false,
+                                                        "type":"error"
+                                                    });
+
+                                                    event.preventDefault();
+                                                }
+                                            </script>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +150,7 @@
                                     <span aria-hidden="true">
                                         <i class="notika-icon notika-close"></i>
                                     </span>
-                                </button> Jika ada data yang ingin diubah silahkan hubungi Sekretaris Umum / Sekretaris Jenderal
+                                </button> Jika ada data kepanitiaan yang ingin diubah silahkan hubungi Sekretaris Umum / Sekretaris Jenderal
                             </div>
                         </div>
                         <div class="table-responsive">
