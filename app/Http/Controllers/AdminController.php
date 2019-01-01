@@ -143,7 +143,7 @@ class AdminController extends Controller
                     $certif = Certificate::create([
                         'user_id'   => $id,
                         'daily_manager_id'=> $user->daily_manager_id,
-                        'increment' => $last->increment + 1
+                        'increment' => $last->increment + 2
                     ]);
                 }
             } else {
