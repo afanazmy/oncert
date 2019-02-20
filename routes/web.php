@@ -19,23 +19,25 @@ Route::get('/tes', function () {
     return view('layouts.master');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/done', 'EventOrganizerController@index')->name('eo.index');
-Route::get('/form', 'EventOrganizerController@create')->name('eo.create');
+Route::get('/form', 'EventOrganizerController@create')->name('eo.create')->middleware('verified', 'hasFilledForm');
 Route::get('/form/edit', 'EventOrganizerController@edit')->name('eo.edit');
 Route::post('/form/store', 'EventOrganizerController@store')->name('eo.store');
 
-Route::get('/profile', 'UserController@index')->name('user.index');
-Route::get('/preview-certificate', 'UserController@preview')->name('user.preview');
-Route::post('/profile/update', 'UserController@update')->name('user.update');
+Route::get('/profile', 'UserController@index')->name('user.index')->middleware('verified', 'mustFilledForm');
+Route::get('/preview-certificate', 'UserController@preview')->name('user.preview')->middleware('verified', 'mustFilledForm');
+Route::post('/profile/update', 'UserController@update')->name('user.update')->middleware('verified', 'mustFilledForm');
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/certif', 'AdminController@allCertif')->name('admin.certif');
 Route::get('/admin/user/create', 'AdminController@create')->name('admin.user.create');
 Route::post('/admin/user/store', 'AdminController@store')->name('admin.user.store');
+Route::get('/admin/user/event-organizer/{id}', 'AdminController@eventOrganizer')->name('admin.user.eo');
+Route::post('/admin/user/event-organizer/store', 'AdminController@eventOrganizerStore')->name('admin.user.eo.store');
 Route::get('/admin/setting', 'AdminController@setting')->name('admin.setting');
 Route::post('/admin/setting/store', 'AdminController@storeSetting')->name('admin.setting.store');
 Route::get('/admin/nonaktif/{id}', 'AdminController@nonactivate')->name('admin.nonactivate');

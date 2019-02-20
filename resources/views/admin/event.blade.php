@@ -22,14 +22,14 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Detail</h2>
-                                    <p>Hi <strong>{{ Auth::user()->name }}</strong>! Berikut adalah detail akun dari <strong>{{ $user->name }}</strong>.</p>
+                                    <h2>Tambah Kegiatan</h2>
+                                    <p>Hi <strong>{{ Auth::user()->name }}</strong>! </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3">
                             <div style="text-align: right">
-                                <a href="{!! route('admin.certif.user', ['id' => $user->id]) !!}" target="_blank" class="btn btn-primary notika-btn-primary">Sertifikat</a>
+                                {{-- <a href="{!! route('admin.certif.user', ['id' => $user->id]) !!}" target="_blank" class="btn btn-primary notika-btn-primary">Sertifikat</a> --}}
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            <input type="text" class="form-control input-sm" placeholder="Nama lengkap" name="name" value="{{ $user->name }}">
+                                            <input readonly type="text" class="form-control input-sm" placeholder="Nama lengkap" name="name" value="{{ $user->name }}">
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="bootstrap-select fm-cmp-mg">
-                                            <select class="selectpicker" name="division_id">
+                                            <select disabled class="selectpicker" name="division_id">
                                                 @foreach ($divisions as $key => $division)
                                                 @if ($user->division_id == $division->id)
                                                 <option value="{{ $division->id }}" selected>{{ $division->name }}</option>
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="bootstrap-select fm-cmp-mg">
-                                            <select class="selectpicker" name="daily_manager_id">
+                                            <select disabled class="selectpicker" name="daily_manager_id">
                                                 <option value="">Tidak Memiliki Jabatan</option>
                                                 @foreach ($managers as $key => $manager)
                                                 @if ($user->daily_manager_id == $manager->id)
@@ -129,7 +129,7 @@
                                 </div>
                             </div> --}}
 
-                        <div class="form-example-int mg-t-15">
+                        {{-- <div class="form-example-int mg-t-15">
                             <div class="row">
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
 
@@ -183,6 +183,76 @@
                                     @endif
                                 </div>
                             </div>
+                        </div> --}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form Examples area End-->
+
+<!-- Form Examples area start-->
+<div class="form-example-area">
+    <div class="container">
+        <div class="row" style="margin-bottom: 5em">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap mg-t-30">
+                    <div class="cmp-tb-hd cmp-int-hd">
+                        {{-- <h2>Kegiatan yang Diikuti</h2> --}}
+                    </div>
+                    <form class="" action="{!! route('admin.user.eo.store') !!}" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group" style="margin-bottom: 2em">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm horizontal-label">Kegiatan</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <div class="bootstrap-select fm-cmp-mg">
+                                                <select class="selectpicker" name="event_id" data-live-search="true" required>
+                                                    <option value="" selected disabled>Pilih Kegiatan</option>
+                                                    @foreach ($events as $key => $event)
+                                                    <option class="item-option" data-id="{{ $event->id }}" value="{{ $event->id }}">{{ $event->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 5em">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm horizontal-label">Jabatan</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <div class="bootstrap-select fm-cmp-mg">
+                                                    <select class="selectpicker" name="position_id" data-live-search="true" required>
+                                                        <option value="" selected disabled>Pilih Jabatan</option>
+                                                        @foreach ($positions as $key => $position)
+                                                            <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="form-example-int mg-t-15">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-3 col-sm-3 col-xs-12">
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-7 col-xs-12">
+                                    {{-- <button type="button" class="btn btn-info notika-btn-info">Tambah Kegiatan</button> --}}
+                                    <button type="submit" class="btn btn-success notika-btn-success">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -192,79 +262,6 @@
 </div>
 <!-- Form Examples area End-->
 
-<!-- Data Table area Start-->
-<div class="data-table-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="data-table-list">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="basic-tb-hd">
-                                <h2>Daftar Kegiatan yang Pernah Di Ikuti</h2>
-                                {{-- <p>Jika ada data yang ingin diubah silahkan hubungi Sekretaris Umum / Sekretaris Jenderal</p> --}}
-                                {{-- <div class="alert alert-success alert-dismissible" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="notika-icon notika-close"></i>
-                                            </span>
-                                        </button> Jika ada data kepanitiaan yang ingin diubah silahkan hubungi Sekretaris Umum / Sekretaris Jenderal
-                                    </div> --}}
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div style="text-align: right">
-                                <a target="_blank" href="{!! route('admin.user.eo', ['id' => $user->id]) !!}" class="btn btn-info notika-btn-info waves-effect">Tambah Kegiatan</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <form class="" action="{!! route('admin.detail.verified') !!}" method="post">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="user_id" value="{{ $user->id }}">
-                        <div class="table-responsive">
-                            <table id="data-table-basic" class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Kegiatan</th>
-                                        <th>Jabatan</th>
-                                        <th class="text-center">Verifikasi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($events as $key => $event)
-                                    <tr>
-                                        <td>{{ $event->event->name }}</td>
-                                        <td>{{ $event->position->name }}</td>
-                                        <td class="text-center">
-                                            <div class="fm-checkbox">
-                                                <label><input type="checkbox" name="is_verified[]" value="{{ $event->event->id }}" @if ($event->is_verified) checked
-                                                    @endif class="i-checks"> <i></i></label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="form-example-int mg-t-15">
-                            <div class="row">
-                                <div class="col-lg-10 col-md-3 col-sm-3 col-xs-12">
-                                </div>
-                                <div class="col-lg-2 col-md-7 col-sm-7 col-xs-12">
-                                    <button type="submit" class="btn btn-success notika-btn-success">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Data Table area End-->
 @endsection
 
 {{-- @section('script')

@@ -11,9 +11,12 @@ use App\User;
 use App\Event;
 use App\EventOrganizer;
 use App\Division;
+use App\Position;
 use App\DailyManager;
 use App\CertificateSetting;
 use App\Certificate;
+use Carbon\Carbon;
+use DB;
 
 class AdminController extends Controller
 {
@@ -286,5 +289,38 @@ class AdminController extends Controller
             Alert::error('Error', 'Terjadi kesalahan');
             return redirect()->back();
         }
+    }
+
+    public function eventOrganizer($id)
+    {
+        $user = User::where('id', $id)->first();
+        $divisions = Division::all();
+        $managers = DailyManager::all();
+        $events = Event::all();
+        $positions = Position::all();
+
+        return view('admin.event', compact('user', 'events', 'positions', 'eos', 'divisions', 'managers'));
+    }
+
+    public function eventOrganizerStore(Request $request)
+    {
+        $user = User::find($request->user_id);
+        // dd($user);
+        
+        $data = [
+            'user_id'       => $user->id,
+            'event_id'      => $request->event_id,
+            'position_id'   => $request->position_id,
+            'is_verified'   => 0,
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now()
+        ];
+
+        $insert = DB::table('event_organizers')->insert($data);
+        // $user->has_filled_form = 1;
+        // $user->save();
+
+        Alert::success('Success', 'Data kegiatan berhasil disimpan');
+        return redirect()->route('admin.detail', $user->id);
     }
 }

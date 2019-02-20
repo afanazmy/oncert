@@ -16,8 +16,8 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-                                <small class="form-text text-muted">Masukkan nama sesuai kartu identitas Anda (KTP/KTM/SIM)</small>
-
+                                {{-- <small class="form-text text-muted">Masukkan nama sesuai kartu identitas Anda (KTP/KTM/SIM)</small> --}}
+                                <small class="form-text text-muted">Nama ini akan digunakan pada sertifikat Anda</small>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -31,6 +31,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <small class="form-text text-muted">Gunakan alamat email yang valid untuk konfirmasi data Anda</small>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -50,6 +51,7 @@
                                         <option value="{{ $division->id }}">{{ $division->name }}</option>
                                     @endforeach
                                 </select>
+                                <small class="form-text text-muted">Divisi yang tidak sesuai dengan kenyataan tidak akan diproses</small>
                                 {{-- <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required> --}}
 
                                 @if ($errors->has('division_id'))
