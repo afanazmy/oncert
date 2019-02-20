@@ -47,4 +47,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Certificate');
     }
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Event', 'event_organizers', 'user_id', 'event_id')
+                        ->using('App\EventOrganizerPivot')
+                        ->withPivot([
+                            'position_id',
+                            'is_verified',
+                            'created_by',
+                            'updated_by'
+                        ]);
+    }
 }

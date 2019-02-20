@@ -306,17 +306,14 @@ class AdminController extends Controller
     {
         $user = User::find($request->user_id);
         // dd($user);
-        
-        $data = [
+        $user->events()->detach([$request->event_id]);
+        $user->events()->attach([$request->event_id => [
             'user_id'       => $user->id,
-            'event_id'      => $request->event_id,
             'position_id'   => $request->position_id,
             'is_verified'   => 0,
             'created_at'    => Carbon::now(),
             'updated_at'    => Carbon::now()
-        ];
-
-        $insert = DB::table('event_organizers')->insert($data);
+        ]]);
         // $user->has_filled_form = 1;
         // $user->save();
 
