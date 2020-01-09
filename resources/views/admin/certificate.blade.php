@@ -599,7 +599,7 @@
                       <text x="5025.72" y="14777.27"  class="fil79 fnt3">Ketua Pogram Studi</text>
                       <text x="3537.86" y="15483.95"  class="fil79 fnt3">Komputer dan Sistem Informasi</text>
                       <text x="2618.09" y="18310.67"  class="fil79 fnt3">Muhammad Fakhrurrifqi, S.Kom., M.Cs.</text>
-                      <text x="4547.65" y="19017.35"  class="fil79 fnt3">NI. 111198611201309101</text>
+                      <text x="4547.65" y="19017.35"  class="fil79 fnt3">NIP. 111198611201309101</text>
                       <text x="18491.71" y="14771.06"  class="fil79 fnt3">Ketua Himpunan Mahasiswa </text>
                       <text x="18071.2" y="15477.74"  class="fil79 fnt3">Komputer dan Sistem Informasi</text>
                       <text x="19559.92" y="18304.46"  class="fil79 fnt3">Layndo Safara Aqsa</text>
