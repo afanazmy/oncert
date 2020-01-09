@@ -164,7 +164,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="footer-copy-right">
-                        <p>Code with <i class="fa fa-heart"></i>  by Muhammad 'Afan 'Azmi.</p>
+                        <p>Code with <i class="fa fa-heart"></i>  by Pengurus HIMAKOMSI.</p>
                     </div>
                 </div>
             </div>
