@@ -55,7 +55,7 @@
             padding: 0 0 0 0;
             height: 100%;
             width: 100%;
-            background-image: url("{!! asset('images/base.jpg') !!}");
+            background-image: url("{!! asset('images/base2.jpg') !!}");
             /* background-attachment: scroll; */
             background-repeat: no-repeat;
             background-position: center center;
@@ -125,6 +125,120 @@
             font-weight: 500;
         }
 
+        #ttdContainer {
+            display: flex;
+            position: relative;
+            top: 46%;
+        }
+
+        /* Cell Kaprodi */
+        #asd45 {
+            display: block;
+            top: 49.8%;
+            left: 34.5%;
+            position: relative;
+            height: 0;
+            width: 60%;
+            min-height: 25px;
+        }
+
+        /* Kaprodi */
+        #dfdgt {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        /* Cell NIP Kaprodi */
+        #ghjsa2 {
+            display: block;
+            top: 41.7%;
+            left: 34.5%;
+            position: relative;
+            height: 0;
+            width: 60%;
+            min-height: 25px;
+        }
+
+        /* NIP Kaprodi */
+        #jhkdw2 {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        /* Cell Ketua */
+        #hgfhjf {
+            display: block;
+            top: 49.8%;
+            left: 5.5%;
+            position: relative;
+            height: 0;
+            width: 60%;
+            min-height: 25px;
+        }
+
+        /* Ketua */
+        #vbnfs {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        /* Cell NIM Ketua */
+        #jkgds {
+            display: block;
+            top: 41.7%;
+            left: 5.5%;
+            position: relative;
+            height: 0;
+            width: 60%;
+            min-height: 25px;
+        }
+
+        /* NIM Ketua */
+        #ngfsa1 {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
         @media(max-width: 768px) {
             .row {
                 flex-wrap: wrap;
@@ -172,7 +286,7 @@
             padding: 0 0 0 0;
             height: 100%;
             width: 100%;
-            background-image: url("{!! asset('images/base.jpg') !!}");
+            background-image: url("{!! asset('images/base2.jpg') !!}");
             /* background-attachment: scroll; */
             background-repeat: no-repeat;
             background-position: center center;
@@ -256,6 +370,120 @@
             font-weight: 400;
         }
 
+        #ttdContainer {
+            display: flex;
+            position: relative;
+            top: 51.6%;
+        }
+
+        /* Cell Kaprodi */
+        #asd45 {
+            display: block;
+            top: 49.8%;
+            left: 6.5%;
+            position: relative;
+            height: 0;
+            width: 90%;
+            min-height: 25px;
+        }
+
+        /* Kaprodi */
+        #dfdgt {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 23px;
+            font-weight: normal;
+        }
+
+        /* Cell NIP Kaprodi */
+        #ghjsa2 {
+            display: block;
+            top: 41.7%;
+            left: 6.5%;
+            position: relative;
+            height: 0;
+            width: 90%;
+            min-height: 25px;
+        }
+
+        /* NIP Kaprodi */
+        #jhkdw2 {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 23px;
+            font-weight: normal;
+        }
+
+        /* Cell Ketua */
+        #hgfhjf {
+            display: block;
+            top: 49.8%;
+            left: 3.6%;
+            position: relative;
+            height: 0;
+            width: 90%;
+            min-height: 25px;
+        }
+
+        /* Ketua */
+        #vbnfs {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 23px;
+            font-weight: normal;
+        }
+
+        /* Cell NIM Ketua */
+        #jkgds {
+            display: block;
+            top: 41.7%;
+            left: 3.9%;
+            position: relative;
+            height: 0;
+            width: 90%;
+            min-height: 25px;
+        }
+
+        /* NIM Ketua */
+        #ngfsa1 {
+            padding: 0 0 0 0;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+            text-align: center;
+            float: left;
+            display: block;
+            position: relative;
+            font-family: "Segoe UI", Helvetica, serif;
+            color: #3c3c3c;
+            font-size: 23px;
+            font-weight: normal;
+        }
+
         /* @media (max-width: 768px) {
       .row {
         flex-wrap: wrap;
@@ -279,6 +507,24 @@
             @else
             <div id="iyknf5">{{ $value['daily_manager'] }}</div>
             @endif
+        </div>
+        <div id="ttdContainer">
+            <div style="width: 50%;">
+                <div id="asd45">
+                    <div id="dfdgt">{{ $config["kaprodi"]->value }}</div>
+                </div>
+                <div id="ghjsa2">
+                    <div id="jhkdw2">{{ $config["nip_kaprodi"]->value }}</div>
+                </div>
+            </div>
+            <div style="width: 50%;">
+                <div id="hgfhjf">
+                    <div id="vbnfs">{{ $config["ketua"]->value }}</div>
+                </div>
+                <div id="jkgds">
+                    <div id="ngfsa1">{{ $config["nim_ketua"]->value }}</div>
+                </div>
+            </div>
         </div>
     </div>
     @if ($key

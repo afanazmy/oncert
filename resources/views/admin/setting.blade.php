@@ -81,6 +81,66 @@
                                 </div>
                             </div>
 
+                            <div class="form-example-int form-horizental">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm horizontal-label">Nama Kaprodi</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control input-sm" placeholder="Muhammad Fakhrurirfqi, S.Kom., M. Cs." name="kaprodi" @if($config["kaprodi"] != null) value="{{ $config["kaprodi"]->value }}" @endif required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-example-int form-horizental">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm horizontal-label">No Induk Kaprodi</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control input-sm" placeholder="NIP. 111198611201309101" name="nip_kaprodi" @if($config["nip_kaprodi"] != null) value="{{ $config["nip_kaprodi"]->value }}" @endif required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-example-int form-horizental">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm horizontal-label">Nama Ketua</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control input-sm" placeholder="Layndo Safara Aqsa" name="ketua" @if($config["ketua"] != null) value="{{ $config["ketua"]->value }}" @endif required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-example-int form-horizental">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm horizontal-label">No Induk Ketua</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control input-sm" placeholder="NIM. 16/396282/SV/10495" name="nim_ketua" @if($config["nim_ketua"] != null) value="{{ $config["nim_ketua"]->value }}" @endif required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-example-int mg-t-15">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">

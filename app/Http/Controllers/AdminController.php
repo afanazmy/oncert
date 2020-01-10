@@ -15,6 +15,7 @@ use App\Position;
 use App\DailyManager;
 use App\CertificateSetting;
 use App\Certificate;
+use App\Setting;
 use Carbon\Carbon;
 use DB;
 
@@ -38,7 +39,12 @@ class AdminController extends Controller
     public function setting()
     {
         $setting = CertificateSetting::first();
-        return view('admin.setting', compact('setting'));
+        $config['kaprodi'] = Setting::where('key', 'kaprodi')->first();
+        $config['nip_kaprodi'] = Setting::where('key', 'nip_kaprodi')->first();
+        $config['ketua'] = Setting::where('key', 'ketua')->first();
+        $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
+
+        return view('admin.setting', compact('setting', 'config'));
     }
 
     public function storeSetting(Request $request)
@@ -54,6 +60,26 @@ class AdminController extends Controller
             $setting->increment = $request->increment;
             $setting->save();
         }
+
+        Setting::updateOrInsert(
+            ['key'   => 'kaprodi'],
+            ['value' => $request->kaprodi]
+        );
+
+        Setting::updateOrInsert(
+            ['key'   => 'nip_kaprodi'],
+            ['value' => $request->nip_kaprodi]
+        );
+
+        Setting::updateOrInsert(
+            ['key'   => 'ketua'],
+            ['value' => $request->ketua]
+        );
+
+        Setting::updateOrInsert(
+            ['key'   => 'nim_ketua'],
+            ['value' => $request->nim_ketua]
+        );
 
         Alert::success('Succes', 'Setting Sertifikat berhasil');
         return redirect()->route('admin.setting');
@@ -182,6 +208,10 @@ class AdminController extends Controller
         $data = [];
         $certifs = Certificate::with(['user', 'division', 'dailyManager'])->get();
         $setting = CertificateSetting::first();
+        $config['kaprodi'] = Setting::where('key', 'kaprodi')->first();
+        $config['nip_kaprodi'] = Setting::where('key', 'nip_kaprodi')->first();
+        $config['ketua'] = Setting::where('key', 'ketua')->first();
+        $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
         // dd($certifs);
         foreach ($certifs as $key => $certif) {
             $division = null;
@@ -202,7 +232,7 @@ class AdminController extends Controller
             ];
         }
 
-        return view('admin.backcertificate', compact('data'));
+        return view('admin.backcertificate', compact('data', 'config'));
 
     }
 
@@ -212,6 +242,10 @@ class AdminController extends Controller
         $user = User::find($id);
         $certifs = Certificate::where('user_id', $id)->with(['user', 'division', 'dailyManager'])->get();
         $setting = CertificateSetting::first();
+        $config['kaprodi'] = Setting::where('key', 'kaprodi')->first();
+        $config['nip_kaprodi'] = Setting::where('key', 'nip_kaprodi')->first();
+        $config['ketua'] = Setting::where('key', 'ketua')->first();
+        $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
         // dd($certifs);
         foreach ($certifs as $key => $certif) {
             $division = null;
@@ -233,13 +267,13 @@ class AdminController extends Controller
         }
 
         // dd($data);
-        $pdf = PDF::loadView('admin.backcertificate', compact('data'));
+        $pdf = PDF::loadView('admin.backcertificate', compact('data', 'config'));
         $pdf->setPaper('a4', 'landscape');
         // $pdf->setOptions(['debugCss' => true]);
         // return $pdf->stream();
         // return $pdf->download($user->name.'.pdf');
 
-        return view('admin.backcertificate', compact('data'));
+        return view('admin.backcertificate', compact('data', 'config'));
     }
 
     public function lock($id)
