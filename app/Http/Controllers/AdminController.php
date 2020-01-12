@@ -140,10 +140,13 @@ class AdminController extends Controller
             ->with('event')
             ->with('position')
             ->get();
-            // dd($events);
+            // dd($request);
         foreach ($events as $key => $event) {
-            if (in_array($event->event_id, $request->is_verified)) {
+            if ($request->is_verified && in_array($event->event_id, $request->is_verified)) {
                 $event->is_verified = 1;
+                $event->save();
+            } else {
+                $event->is_verified = 0;
                 $event->save();
             }
         }
@@ -333,7 +336,7 @@ class AdminController extends Controller
         $events = Event::all();
         $positions = Position::all();
 
-        return view('admin.event', compact('user', 'events', 'positions', 'eos', 'divisions', 'managers'));
+        return view('admin.event', compact('user', 'events', 'positions', 'divisions', 'managers'));
     }
 
     public function eventOrganizerStore(Request $request)
