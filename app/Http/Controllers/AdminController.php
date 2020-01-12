@@ -279,6 +279,66 @@ class AdminController extends Controller
         return view('admin.backcertificate', compact('data', 'config'));
     }
 
+    public function allEos()
+    {
+        $data = [];
+        $certifs = Certificate::with(['user', 'division', 'dailyManager'])->get();
+        $setting = CertificateSetting::first();
+        $config['ketua'] = Setting::where('key', 'ketua')->first();
+        $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
+        // dd($certifs);
+        foreach ($certifs as $key => $certif) {
+            $division = null;
+            $daily_manger = null;
+
+            if (isset($certif->division)) {
+                $division = $certif->division->name;
+            } else {
+                $daily_manger = $certif->dailyManager->name;
+            }
+
+            $data[$key] = [
+                'name'  => $certif->user->name,
+                'division'  => $division,
+                'daily_manager'  => $daily_manger,
+                'event_organizers'  => $certif->user->eventOrganizers
+            ];
+        }
+
+        return view('admin.backeos', compact('data', 'config'));
+
+    }
+
+    public function userEos($id)
+    {
+        $data = [];
+        $certifs = Certificate::where('user_id', $id)->with(['user', 'division', 'dailyManager'])->get();
+        $setting = CertificateSetting::first();
+        $config['ketua'] = Setting::where('key', 'ketua')->first();
+        $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
+        // dd($certifs);
+        foreach ($certifs as $key => $certif) {
+            $division = null;
+            $daily_manger = null;
+
+            if (isset($certif->division)) {
+                $division = $certif->division->name;
+            } else {
+                $daily_manger = $certif->dailyManager->name;
+            }
+
+            $data[$key] = [
+                'name'  => $certif->user->name,
+                'division'  => $division,
+                'daily_manager'  => $daily_manger,
+                'event_organizers'  => $certif->user->eventOrganizers
+            ];
+        }
+
+        return view('admin.backeos', compact('data', 'config'));
+
+    }
+
     public function lock($id)
     {
         $user = User::find($id);

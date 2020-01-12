@@ -112,6 +112,11 @@
                                                 <span class="navbar-links">Sertifikat</span>
                                             </a>
                                         </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="{!! route('admin.eos') !!}" class="nav-link dropdown-toggle" target="_blank">
+                                                <span class="navbar-links">Kepanitiaan</span>
+                                            </a>
+                                        </li>
                                         @else
                                             <li class="nav-item dropdown">
                                                 <a href="{!! route('user.index') !!}" class="nav-link dropdown-toggle">

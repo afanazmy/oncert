@@ -34,6 +34,7 @@ Route::post('/profile/update', 'UserController@update')->name('user.update')->mi
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/certif', 'AdminController@allCertif')->name('admin.certif');
+Route::get('/admin/event-organizers', 'AdminController@allEos')->name('admin.eos');
 Route::get('/admin/user/create', 'AdminController@create')->name('admin.user.create');
 Route::post('/admin/user/store', 'AdminController@store')->name('admin.user.store');
 Route::get('/admin/user/event-organizer/{id}', 'AdminController@eventOrganizer')->name('admin.user.eo');
@@ -47,6 +48,7 @@ Route::post('/admin/detail/verified', 'AdminController@verified')->name('admin.d
 Route::get('/admin/detail/lock/{id}', 'AdminController@lock')->name('admin.detail.lock');
 Route::get('/admin/has-certif/{id}', 'AdminController@hasCertif')->name('admin.hasCertif');
 Route::get('/admin/certif/user/{id}', 'AdminController@userCertif')->name('admin.certif.user');
+Route::get('/admin/event-organizers/user/{id}', 'AdminController@userEos')->name('admin.eos.user');
 
 // Route::group(['middleware' => 'web', 'prefix' => 'item'], function()
 // {

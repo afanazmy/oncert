@@ -30,6 +30,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3">
                             <div style="text-align: right">
                                 <a href="{!! route('admin.certif.user', ['id' => $user->id]) !!}" target="_blank" class="btn btn-primary notika-btn-primary">Sertifikat</a>
+                                <a href="{!! route('admin.eos.user', ['id' => $user->id]) !!}" target="_blank" class="btn btn-primary notika-btn-primary">Kepanitiaan</a>
                             </div>
                         </div>
                     </div>

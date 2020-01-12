@@ -40,7 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function eventOrganizers()
     {
-        return $this->hasMany('App\EventOrganizer');
+        return $this->hasMany('App\EventOrganizer')->with('position', 'event');
     }
 
     public function certificate()
