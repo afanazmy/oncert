@@ -301,7 +301,9 @@ class AdminController extends Controller
                 'name'  => $certif->user->name,
                 'division'  => $division,
                 'daily_manager'  => $daily_manger,
-                'event_organizers'  => $certif->user->eventOrganizers
+                'event_organizers'  => EventOrganizer::where('user_id', $certif->user->id)
+                                                     ->where('is_verified', 1)
+                                                     ->get()
             ];
         }
 
@@ -331,7 +333,9 @@ class AdminController extends Controller
                 'name'  => $certif->user->name,
                 'division'  => $division,
                 'daily_manager'  => $daily_manger,
-                'event_organizers'  => $certif->user->eventOrganizers
+                'event_organizers'  => EventOrganizer::where('user_id', $id)
+                                                     ->where('is_verified', 1)
+                                                     ->get()
             ];
         }
 
