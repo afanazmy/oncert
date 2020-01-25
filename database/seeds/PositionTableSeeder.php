@@ -65,7 +65,7 @@ class PositionTableSeeder extends Seeder
         ]);
 
         Position::create([
-            'name'  => 'Subkoordinator Acara'
+            'name'  => 'Koordinator Keamanan'
         ]);
 
         Position::create([
@@ -106,6 +106,14 @@ class PositionTableSeeder extends Seeder
 
         Position::create([
             'name'  => 'Staff Transportasi'
+        ]);
+
+        Position::create([
+            'name'  => 'Staff Keamanan'
+        ]);
+
+        Position::create([
+            'name'  => 'Sekretaris - Bendahara'
         ]);
 
     }
