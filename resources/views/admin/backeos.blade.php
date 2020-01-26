@@ -34,7 +34,7 @@
         }
         table {
             border-collapse: collapse;
-            margin: 0 auto;
+            margin: 0 2cm;
         }
 
         .page-name {
@@ -45,6 +45,24 @@
         h3 {
             /* color: #3b3b3b; */
             margin: 10px auto;
+        }
+
+        .info-container {
+            display: flex;
+            width: 100%;
+            margin: 10px 0 30px 0;
+        }
+
+        .info {
+            width: 100%;
+        }
+
+        .info-item {
+            margin-left: 2cm;
+            margin-right: auto;
+            margin-top: 10px;
+            display: flex;
+            width: 100%;
         }
 
         .ttd-container {
@@ -97,7 +115,7 @@
         }
         table {
             border-collapse: collapse;
-            margin: 0 auto;
+            margin: 0 2cm;
         }
 
         .page-name {
@@ -109,6 +127,24 @@
         h3 {
             /* color: #3b3b3b; */
             margin: 0 auto;
+        }
+
+        .info-container {
+            display: flex;
+            width: 100%;
+            margin: 10px 0 30px 0;
+        }
+
+        .info {
+            width: 100%;
+        }
+
+        .info-item {
+            margin-left: 2cm;
+            margin-right: auto;
+            margin-top: 10px;
+            display: flex;
+            width: 100%;
         }
 
         .ttd-container {
@@ -131,14 +167,41 @@
     @foreach ($data as $key => $value)
     <div class="row ilaxkb">
         <div class="page-name">
-            <h3>DAFTAR KEGIATAN YANG DIIKUTI</h3>
+            <h3>DAFTAR KEGIATAN YANG PERNAH DIIKUTI</h3>
         </div>
+        <div class="info-container">
+            <div class="info">
+                <div class="info-item">
+                    <span style="width: 8%">Nama</span>
+                    <span style="width: 2%">:</span>
+                    <span style="width: 90%">{{ $value['name'] }}</span>
+                </div>
+                <div class="info-item">
+                    <span style="width: 8%">
+                        @if (isset($value['division']))
+                            Divisi
+                        @else
+                            Jabatan
+                        @endif
+                    </span>
+                    <span style="width: 2%">:</span>
+                    <span style="width: 90%">
+                        @if (isset($value['division']))
+                            Staff {{ $value['division'] }}
+                        @else
+                            {{ $value['daily_manager'] }}
+                        @endif
+                    </span>
+                </div>
+            </div>
+        </div>
+
         <table>
             <thead>
                 <tr>
-                    <th>NO</th>
-                    <th>NAMA KEGIATAN</th>
-                    <th>JABATAN</th>
+                    <th style="width: 5%">NO</th>
+                    <th style="width: 35%">NAMA KEGIATAN</th>
+                    <th style="width: 60%">JABATAN</th>
                 </tr>
             </thead>
             <tbody>
