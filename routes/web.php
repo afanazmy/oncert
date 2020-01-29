@@ -49,6 +49,8 @@ Route::get('/admin/detail/lock/{id}', 'AdminController@lock')->name('admin.detai
 Route::get('/admin/has-certif/{id}', 'AdminController@hasCertif')->name('admin.hasCertif');
 Route::get('/admin/certif/user/{id}', 'AdminController@userCertif')->name('admin.certif.user');
 Route::get('/admin/event-organizers/user/{id}', 'AdminController@userEos')->name('admin.eos.user');
+Route::get('/admin/all-has-certif', 'AdminController@allHasCertif')->name('admin.allHasCertif');
+Route::get('/admin/all-not-has-certif', 'AdminController@allNotHasCertif')->name('admin.allNotHasCertif');
 
 // Route::group(['middleware' => 'web', 'prefix' => 'item'], function()
 // {

@@ -166,30 +166,43 @@ class AdminController extends Controller
             $last = Certificate::orderBy('increment', 'DESC')->first();
             $setting = CertificateSetting::first();
             if ($last) {
-                $certif = Certificate::create([
-                    'user_id'   => $id,
-                    'division_id'=> $user->division_id,
-                    'increment' => $last->increment + 1
-                ]);
                 if ($user->daily_manager_id) {
                     $certif = Certificate::create([
                         'user_id'   => $id,
                         'daily_manager_id'=> $user->daily_manager_id,
+                        'increment' => $last->increment + 1
+                    ]);
+
+                    $certif = Certificate::create([
+                        'user_id'   => $id,
+                        'division_id'=> $user->division_id,
                         'increment' => $last->increment + 2
+                    ]);
+                } else {
+                    $certif = Certificate::create([
+                        'user_id'   => $id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $last->increment + 1
                     ]);
                 }
             } else {
-                $certif = Certificate::create([
-                    'user_id'   => $id,
-                    'division_id'=> $user->division_id,
-                    'increment' => $setting->increment
-                ]);
-                $before = Certificate::orderBy('increment', 'DESC')->first();
                 if ($user->daily_manager_id) {
                     $certif = Certificate::create([
                         'user_id'   => $id,
                         'daily_manager_id'=> $user->daily_manager_id,
-                        'increment' => $before->increment + 1
+                        'increment' => $setting->increment
+                    ]);
+
+                    $certif = Certificate::create([
+                        'user_id'   => $id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $setting->increment + 1
+                    ]);
+                } else {
+                    $certif = Certificate::create([
+                        'user_id'   => $id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $setting->increment
                     ]);
                 }
             }
@@ -204,6 +217,133 @@ class AdminController extends Controller
         Alert::success('Success', 'Kepemilikan sertifikat berhasil diubah');
         return redirect()->back();
 
+    }
+
+    public function allHasCertif()
+    {
+        $users = User::whereNotNull('daily_manager_id')
+                    ->orderBy('daily_manager_id', 'asc')
+                    ->orderBy('division_id', 'asc')
+                    ->get();
+        $setting = CertificateSetting::first();
+        $inc = $setting->increment;
+        DB::beginTransaction();
+
+        foreach ($users as $user) {
+            if ($user->has_certificate == 0) {
+                $user->has_certificate = 1;
+                $user->save();
+
+                if ($user->daily_manager_id) {
+                    $certif = Certificate::create([
+                        'user_id'   => $user->id,
+                        'daily_manager_id'=> $user->daily_manager_id,
+                        'increment' => $inc
+                    ]);
+                    if (!$certif) {
+                        DB::rollback();
+                        Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+                        return redirect()->back();
+                    }
+                    $inc++;
+
+                    $certif = Certificate::create([
+                        'user_id'   => $user->id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $inc
+                    ]);
+                    if (!$certif) {
+                        DB::rollback();
+                        Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+                        return redirect()->back();
+                    }
+                    $inc++;
+                } else {
+                    $certif = Certificate::create([
+                        'user_id'   => $user->id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $inc
+                    ]);
+                    if (!$certif) {
+                        DB::rollback();
+                        Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+                        return redirect()->back();
+                    }
+                    $inc++;
+                }
+            }
+        }
+
+        $users = User::whereNotNull('division_id')
+                    ->orderBy('division_id', 'asc')
+                    ->get();
+
+        foreach ($users as $user) {
+            if ($user->has_certificate == 0) {
+                $user->has_certificate = 1;
+                $user->save();
+
+                if ($user->daily_manager_id) {
+                    $certif = Certificate::create([
+                        'user_id'   => $user->id,
+                        'daily_manager_id'=> $user->daily_manager_id,
+                        'increment' => $inc
+                    ]);
+                    if (!$certif) {
+                        DB::rollback();
+                        Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+                        return redirect()->back();
+                    }
+                    $inc++;
+
+                    $certif = Certificate::create([
+                        'user_id'   => $user->id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $inc
+                    ]);
+                    if (!$certif) {
+                        DB::rollback();
+                        Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+                        return redirect()->back();
+                    }
+                    $inc++;
+                } else {
+                    $certif = Certificate::create([
+                        'user_id'   => $user->id,
+                        'division_id'=> $user->division_id,
+                        'increment' => $inc
+                    ]);
+                    if (!$certif) {
+                        DB::rollback();
+                        Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+                        return redirect()->back();
+                    }
+                    $inc++;
+                }
+            }
+        }
+
+        DB::commit();
+
+        Alert::success('Success', 'Kepemilikan sertifikat berhasil diubah');
+        return redirect()->back();
+    }
+
+    public function allNotHasCertif()
+    {
+        DB::beginTransaction();
+        DB::table('certificates')->truncate();
+
+        $update_user = DB::update('UPDATE users SET has_certificate = 0 WHERE has_certificate = 1');
+        if (!$update_user) {
+            DB::rollback();
+            Alert::error('Error', 'Kepemilikan sertifikat gagal diubah');
+            return redirect()->back();
+        }
+
+        DB::commit();
+        Alert::success('Success', 'Kepemilikan sertifikat berhasil diubah');
+        return redirect()->back();
     }
 
     public function allCertif()

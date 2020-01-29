@@ -117,6 +117,16 @@
                                                 <span class="navbar-links">Kepanitiaan</span>
                                             </a>
                                         </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="{!! route('admin.allHasCertif') !!}" class="nav-link dropdown-toggle">
+                                                <span class="navbar-links">Generate Sertifikat</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="{!! route('admin.allNotHasCertif') !!}" class="nav-link dropdown-toggle">
+                                                <span class="navbar-links">Hapus Sertifikat</span>
+                                            </a>
+                                        </li>
                                         @else
                                             <li class="nav-item dropdown">
                                                 <a href="{!! route('user.index') !!}" class="nav-link dropdown-toggle">
