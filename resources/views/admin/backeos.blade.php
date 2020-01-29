@@ -200,8 +200,8 @@
             <thead>
                 <tr>
                     <th style="width: 5%">NO</th>
-                    <th style="width: 45%">NAMA KEGIATAN</th>
-                    <th style="width: 50%">JABATAN</th>
+                    <th style="width: 35%">NAMA KEGIATAN</th>
+                    <th style="width: 60%">JABATAN</th>
                 </tr>
             </thead>
             <tbody>
