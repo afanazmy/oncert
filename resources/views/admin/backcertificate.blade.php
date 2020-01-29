@@ -55,7 +55,7 @@
             padding: 0 0 0 0;
             height: 100%;
             width: 100%;
-            background-image: url("{!! asset('images/base3.jpg') !!}");
+            background-image: url("{!! asset('images/base4.jpg') !!}");
             /* background-attachment: scroll; */
             background-repeat: no-repeat;
             background-position: center center;
@@ -286,7 +286,7 @@
             padding: 0 0 0 0;
             height: 100%;
             width: 100%;
-            background-image: url("{!! asset('images/base3.jpg') !!}");
+            background-image: url("{!! asset('images/base4.jpg') !!}");
             /* background-attachment: scroll; */
             background-repeat: no-repeat;
             background-position: center center;
