@@ -270,8 +270,8 @@ class AdminController extends Controller
         }
 
         // dd($data);
-        $pdf = PDF::loadView('admin.backcertificate', compact('data', 'config'));
-        $pdf->setPaper('a4', 'landscape');
+        // $pdf = PDF::loadView('admin.backcertificate', compact('data', 'config'));
+        // $pdf->setPaper('a4', 'landscape');
         // $pdf->setOptions(['debugCss' => true]);
         // return $pdf->stream();
         // return $pdf->download($user->name.'.pdf');
