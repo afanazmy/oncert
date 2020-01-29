@@ -533,8 +533,7 @@
     @endif
     @endforeach
 </body>
-<html>
-
-</html>
-
+<script>
+    window.print();
+</script>
 </html>
