@@ -140,7 +140,7 @@ class AdminController extends Controller
             ->with('event')
             ->with('position')
             ->get();
-            // dd($request);
+        // dd($request);
         foreach ($events as $key => $event) {
             if ($request->is_verified && in_array($event->event_id, $request->is_verified)) {
                 $event->is_verified = 1;
@@ -169,19 +169,19 @@ class AdminController extends Controller
                 if ($user->daily_manager_id) {
                     $certif = Certificate::create([
                         'user_id'   => $id,
-                        'daily_manager_id'=> $user->daily_manager_id,
+                        'daily_manager_id' => $user->daily_manager_id,
                         'increment' => $last->increment + 1
                     ]);
 
                     $certif = Certificate::create([
                         'user_id'   => $id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $last->increment + 2
                     ]);
                 } else {
                     $certif = Certificate::create([
                         'user_id'   => $id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $last->increment + 1
                     ]);
                 }
@@ -189,19 +189,19 @@ class AdminController extends Controller
                 if ($user->daily_manager_id) {
                     $certif = Certificate::create([
                         'user_id'   => $id,
-                        'daily_manager_id'=> $user->daily_manager_id,
+                        'daily_manager_id' => $user->daily_manager_id,
                         'increment' => $setting->increment
                     ]);
 
                     $certif = Certificate::create([
                         'user_id'   => $id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $setting->increment + 1
                     ]);
                 } else {
                     $certif = Certificate::create([
                         'user_id'   => $id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $setting->increment
                     ]);
                 }
@@ -216,15 +216,14 @@ class AdminController extends Controller
 
         Alert::success('Success', 'Kepemilikan sertifikat berhasil diubah');
         return redirect()->back();
-
     }
 
     public function allHasCertif()
     {
         $users = User::whereNotNull('daily_manager_id')
-                    ->orderBy('daily_manager_id', 'asc')
-                    ->orderBy('division_id', 'asc')
-                    ->get();
+            ->orderBy('daily_manager_id', 'asc')
+            ->orderBy('division_id', 'asc')
+            ->get();
         $setting = CertificateSetting::first();
         $inc = $setting->increment;
         DB::beginTransaction();
@@ -237,7 +236,7 @@ class AdminController extends Controller
                 if ($user->daily_manager_id) {
                     $certif = Certificate::create([
                         'user_id'   => $user->id,
-                        'daily_manager_id'=> $user->daily_manager_id,
+                        'daily_manager_id' => $user->daily_manager_id,
                         'increment' => $inc
                     ]);
                     if (!$certif) {
@@ -249,7 +248,7 @@ class AdminController extends Controller
 
                     $certif = Certificate::create([
                         'user_id'   => $user->id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $inc
                     ]);
                     if (!$certif) {
@@ -261,7 +260,7 @@ class AdminController extends Controller
                 } else {
                     $certif = Certificate::create([
                         'user_id'   => $user->id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $inc
                     ]);
                     if (!$certif) {
@@ -275,8 +274,8 @@ class AdminController extends Controller
         }
 
         $users = User::whereNotNull('division_id')
-                    ->orderBy('division_id', 'asc')
-                    ->get();
+            ->orderBy('division_id', 'asc')
+            ->get();
 
         foreach ($users as $user) {
             if ($user->has_certificate == 0) {
@@ -286,7 +285,7 @@ class AdminController extends Controller
                 if ($user->daily_manager_id) {
                     $certif = Certificate::create([
                         'user_id'   => $user->id,
-                        'daily_manager_id'=> $user->daily_manager_id,
+                        'daily_manager_id' => $user->daily_manager_id,
                         'increment' => $inc
                     ]);
                     if (!$certif) {
@@ -298,7 +297,7 @@ class AdminController extends Controller
 
                     $certif = Certificate::create([
                         'user_id'   => $user->id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $inc
                     ]);
                     if (!$certif) {
@@ -310,7 +309,7 @@ class AdminController extends Controller
                 } else {
                     $certif = Certificate::create([
                         'user_id'   => $user->id,
-                        'division_id'=> $user->division_id,
+                        'division_id' => $user->division_id,
                         'increment' => $inc
                     ]);
                     if (!$certif) {
@@ -369,6 +368,7 @@ class AdminController extends Controller
             $data[$key] = [
                 'name'  => $certif->user->name,
                 'division'  => $division,
+                'daily_manager_id'  => $certif->user->daily_manager_id,
                 'daily_manager'  => $daily_manger,
                 'increment' => $certif->increment,
                 'base'      => $setting->base
@@ -376,7 +376,6 @@ class AdminController extends Controller
         }
 
         return view('admin.backcertificate', compact('data', 'config'));
-
     }
 
     public function userCertif($id)
@@ -403,6 +402,7 @@ class AdminController extends Controller
             $data[$key] = [
                 'name'  => $certif->user->name,
                 'division'  => $division,
+                'daily_manager_id'  => $certif->user->daily_manager_id,
                 'daily_manager'  => $daily_manger,
                 'increment' => $certif->increment,
                 'base'      => $setting->base
@@ -424,6 +424,8 @@ class AdminController extends Controller
         $data = [];
         $certifs = Certificate::with(['user', 'division', 'dailyManager'])->get();
         $setting = CertificateSetting::first();
+        $config['kaprodi'] = Setting::where('key', 'kaprodi')->first();
+        $config['nip_kaprodi'] = Setting::where('key', 'nip_kaprodi')->first();
         $config['ketua'] = Setting::where('key', 'ketua')->first();
         $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
         // dd($certifs);
@@ -440,15 +442,15 @@ class AdminController extends Controller
             $data[$key] = [
                 'name'  => $certif->user->name,
                 'division'  => $division,
+                'daily_manager_id'  => $certif->user->daily_manager_id,
                 'daily_manager'  => $daily_manger,
                 'event_organizers'  => EventOrganizer::where('user_id', $certif->user->id)
-                                                     ->where('is_verified', 1)
-                                                     ->get()
+                    ->where('is_verified', 1)
+                    ->get()
             ];
         }
 
         return view('admin.backeos', compact('data', 'config'));
-
     }
 
     public function userEos($id)
@@ -456,6 +458,8 @@ class AdminController extends Controller
         $data = [];
         $certifs = Certificate::where('user_id', $id)->with(['user', 'division', 'dailyManager'])->get();
         $setting = CertificateSetting::first();
+        $config['kaprodi'] = Setting::where('key', 'kaprodi')->first();
+        $config['nip_kaprodi'] = Setting::where('key', 'nip_kaprodi')->first();
         $config['ketua'] = Setting::where('key', 'ketua')->first();
         $config['nim_ketua'] = Setting::where('key', 'nim_ketua')->first();
         // dd($certifs);
@@ -472,15 +476,15 @@ class AdminController extends Controller
             $data[$key] = [
                 'name'  => $certif->user->name,
                 'division'  => $division,
+                'daily_manager_id'  => $certif->user->daily_manager_id,
                 'daily_manager'  => $daily_manger,
                 'event_organizers'  => EventOrganizer::where('user_id', $id)
-                                                     ->where('is_verified', 1)
-                                                     ->get()
+                    ->where('is_verified', 1)
+                    ->get()
             ];
         }
 
         return view('admin.backeos', compact('data', 'config'));
-
     }
 
     public function lock($id)

@@ -217,14 +217,26 @@
         <div class="ttd-container">
             <div class="ttd">
                 <div class="jabatan">
+                    @if ($value['daily_manager_id'] == 1)
+                    Pembina Himpunan Mahasiswa
+                    @else
                     Ketua Himpunan Mahasiswa
+                    @endif
                     <br />
                     Komputer dan Sistem Informasi,
                 </div>
                 <div class="nama">
+                    @if ($value['daily_manager_id'] == 1)
+                    {{ $config["kaprodi"]->value }}
+                    @else
                     {{ $config["ketua"]->value }}
+                    @endif
                     <br />
+                    @if ($value['daily_manager_id'] == 1)
+                    {{ $config["nip_kaprodi"]->value }}
+                    @else
                     {{ $config["nim_ketua"]->value }}
+                    @endif
                 </div>
             </div>
         </div>

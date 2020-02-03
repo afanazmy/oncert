@@ -55,7 +55,7 @@
             padding: 0 0 0 0;
             height: 100%;
             width: 100%;
-            background-image: url("{!! asset('images/base4.jpg') !!}");
+            /* background-image: url("{!! asset('images/base4.jpg') !!}"); */
             /* background-attachment: scroll; */
             background-repeat: no-repeat;
             background-position: center center;
@@ -286,7 +286,7 @@
             padding: 0 0 0 0;
             height: 100%;
             width: 100%;
-            background-image: url("{!! asset('images/base4.jpg') !!}");
+            /* background-image: url("{!! asset('images/base4.jpg') !!}"); */
             /* background-attachment: scroll; */
             background-repeat: no-repeat;
             background-position: center center;
@@ -494,7 +494,8 @@
 
 <body>
     @foreach ($data as $key => $value)
-    <div id="ilaxkb" class="row">
+
+    <div id="ilaxkb" class="row" style="background-image: @if ($value['daily_manager_id'] == 1) url({!! asset('images/base_ketua2.jpg') !!}) @else url({!! asset('images/base4.jpg') !!}) @endif">
         <div id="i4qoaf" class="cell">
             <div id="iw4opq">No. {{ $value['increment'] }}{{ $value['base'] }}</div>
         </div>
@@ -508,29 +509,30 @@
             <div id="iyknf5">{{ $value['daily_manager'] }}</div>
             @endif
         </div>
+
         <div id="ttdContainer">
             <div style="width: 50%;">
                 <div id="asd45">
-                    <div id="dfdgt">{{ $config["kaprodi"]->value }}</div>
+                    <div id="dfdgt" @if ($value['daily_manager_id'] == 1) style="color: transparent" @endif>{{ $config["kaprodi"]->value }}</div>
                 </div>
                 <div id="ghjsa2">
-                    <div id="jhkdw2">{{ $config["nip_kaprodi"]->value }}</div>
+                    <div id="jhkdw2" @if ($value['daily_manager_id'] == 1) style="color: transparent" @endif>{{ $config["nip_kaprodi"]->value }}</div>
                 </div>
             </div>
             <div style="width: 50%;">
                 <div id="hgfhjf">
-                    <div id="vbnfs">{{ $config["ketua"]->value }}</div>
+                    <div id="vbnfs" @if ($value['daily_manager_id'] == 1) style="color: transparent" @endif>{{ $config["ketua"]->value }}</div>
                 </div>
                 <div id="jkgds">
-                    <div id="ngfsa1">{{ $config["nim_ketua"]->value }}</div>
+                    <div id="ngfsa1" @if ($value['daily_manager_id'] == 1) style="color: transparent" @endif>{{ $config["nim_ketua"]->value }}</div>
                 </div>
             </div>
         </div>
     </div>
-    @if ($key
+    {{-- @if ($key
     < @count($data)-1 )
     <div class="page-break"></div>
-    @endif
+    @endif --}}
     @endforeach
 </body>
 <script>
